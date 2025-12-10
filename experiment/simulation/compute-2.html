@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/compute.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+
+<body>
+    <div class="container" id="box" style="width:1070px">
+        <!-- Instructions -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <ol type="1" style="text-align: justify;font-size:18px">
+                            <li>Select a value for each attribute in the <b>TRAINING DATASET</b> using the dropdown and then click the <b>ADD</b> button to incorporate the values into the table.</li>
+                            <li>Repeat the above step until you've completed this process for 8 rows.</li>
+                            <li>Click on <b>NEXT</b> button to navigate to the <b>COMPUTE</b> page.</li>
+                            <li>Click the <b>ITERATE</b> button to identify positive and negative examples within the DATASET.</li>
+                            <li>Then, click the <b>COMPARE</b> button to uncover a more generalized hypothesis.</li>
+                            <li>Repeat steps 4 and 5 for every instance (example) in the DATASET.</li>
+                            <li>Now, click on <b>ANALYZE</b> tab.</li>
+                        </ol></p>
+
+                        <b style="color:#FF6600">NOTE:</b> If, at any point, h = {?,?,?,?}, then click on the <b style="color:#FF6600">ANALYZE</b> tab.
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"
+                    style="display: flex; border-right: 2px solid black; color: white; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        CREATE
+                    </div>
+                    <img src="images/create.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid black; color: black;background-color:#e0e0e0;font-weight: bold;cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+
+                       COMPUTE
+                    </div>
+                
+                    <img src="images/calculator1.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" id="calImg" alt="">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid black; color: white; cursor:not-allowed;">
+                    <div class="tab-create"  style="cursor:not-allowed;">
+                        <a class="tab-text" id="todecide"> ANALYZE</a>
+                        
+                    </div>
+                    <img src="images/analyse.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="" onclick="window.location.href='analyse2.html'">
+
+                </div>
+                
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px" href="#">INSTRUCTIONS</a>
+        </header>
+        <div class="sec-con-container" id="finalshow" style="display: none;width:1050px">
+            <div class="sec-con-column" id="finale1"></div>
+            <div class="sec-con-table" id="finale2"></div>
+        </div>
+        <div class="sec-con-container" style="width:1050px">
+            <div class="sec-con-column" id=finalhide>
+                <!-- controls -->
+                <div class="training-left-side-container">
+                    <div class="sub-div-control" id="training-control">
+                        <header id="trainToTest" class="header-box">DATASET (X)</header>
+                        <div id="tablesContainer" >
+                            
+                            <table id="dataPointsTable" >
+                                <thead >
+                                    <tr >
+                                        <th>S.No</th>
+                                    <th>CITATIONS</th>
+                                    <th>SIZE</th>
+                                    <th>IN LIBRARY</th>
+                                    <th>PRICE</th>
+                                    <th>EDITIONS</th>
+                                    <th>BUY</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="for11">
+                                    <!-- Data point coordinates will be dynamically populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    
+
+            
+                        <!-- <div class="control-panel">
+                        </div> -->
+                    </div>
+                    <div class="sub-div-hypo" style="bottom:38px">
+                        <header class="header-box">HYPOTHESIS SPACE</header>
+
+                        <div  id="obser">
+                            
+
+                            <ol class="jsavautoresize jsavcenter jsavindexed jsavarray jsavhorizontalarray" id="obser1"data-visible="true" data-autoresize="true" data-center="true" data-layout="array" data-indexed="true" data-template="<span class=&quot;jsavvalue&quot;><span class=&quot;jsavvaluelabel&quot;>{{value}}</span></span><span class=&quot;jsavindexlabel&quot;>{{index}}</span>" style="height: 80px; width: 350px;">
+                              
+                                <b id="label" style="font-size:20px;top: 17px;left:-40px;position:absolute;color:#e0e0e0">h<sub>0</sub>: </b>
+                                <li class="node jsavindex" id="onode1">
+                                    <span class="jsavvalue"><span class="jsavvaluelabel" id="oh1">ϕ</span></span><span class="jsavindexlabel">0</span>
+        
+                                </li>
+                                <li class="node jsavindex" id="onode2">
+        
+                                    <span class="jsavvalue"><span class="jsavvaluelabel" id="oh2">ϕ</span></span><span class="jsavindexlabel">1</span>
+        
+                                </li>
+        
+                                <li class="node jsavindex" id="onode3">
+        
+                                    <span class="jsavvalue"><span class="jsavvaluelabel" id="oh3">ϕ</span></span><span class="jsavindexlabel">2</span>
+        
+                                </li>
+        
+                                <li class="node jsavindex" id="onode4">
+        
+                                    <span class="jsavvalue"><span class="jsavvaluelabel" id="oh4">ϕ</span></span><span class="jsavindexlabel">3</span>
+        
+                                </li>
+                                <li class="node jsavindex" id="onode5">
+        
+                                    <span class="jsavvalue"><span class="jsavvaluelabel" id="oh5">ϕ</span></span><span class="jsavindexlabel">4</span>
+        
+                                </li>
+                               </ol>
+                            
+                               
+                               <div id="obser2" style="margin-top:10px;margin-left: 30px;font-size:20px;color:#e0e0e0"></div>
+                        </div>
+                    
+                    </diV>
+                    
+                </div>
+            </div>
+
+            <!-- table -->
+           
+                <div class="sub-div-table" id="forCompare" style="width:52%;height:356px">
+                    <header id=calculation class="header-box">COMPARISON</header>
+                 
+                    <div id="firsttable" style=" height: fit-content; position: relative; margin-top: 5px; ">
+                        
+                        <div id="iterate0" style="margin-left: 0px; width: auto;font-size:18px;display:none">
+                        <br>
+                     
+                        <div id="heading" style="margin-left: 10px;color:#e0e0e0"><b>h<sub>0</sub> </b></div>
+                       
+                        <ol class="jsavautoresize jsavcenter jsavindexed jsavarray jsavhorizontalarray" data-visible="true" data-autoresize="true" data-center="true" data-layout="array" data-indexed="true" data-template="<span class=&quot;jsavvalue&quot;><span class=&quot;jsavvaluelabel&quot;>{{value}}</span></span><span class=&quot;jsavindexlabel&quot;>{{index}}</span>" style="height: 110px; width: 400px;">
+                        
+                            <li class="node jsavindex" id="hnode1">
+                                <span class="jsavvalue"><span class="jsavvaluelabel" id="hh1">ϕ</span></span><span class="jsavindexlabel">0</span>
+    
+                            </li>
+                            <li class="node jsavindex" id="hnode2">
+    
+                                <span class="jsavvalue"><span class="jsavvaluelabel" id="hh2">ϕ</span></span><span class="jsavindexlabel">1</span>
+    
+                            </li>
+    
+                            <li class="node jsavindex" id="hnode3">
+    
+                                <span class="jsavvalue"><span class="jsavvaluelabel" id="hh3">ϕ</span></span><span class="jsavindexlabel">2</span>
+    
+                            </li>
+    
+                            <li class="node jsavindex" id="hnode4">
+    
+                                <span class="jsavvalue"><span class="jsavvaluelabel" id="hh4">ϕ</span></span><span class="jsavindexlabel">3</span>
+    
+                            </li>
+                            <li class="node jsavindex" id="hnode5">
+    
+                                <span class="jsavvalue"><span class="jsavvaluelabel" id="hh5">ϕ</span></span><span class="jsavindexlabel">4</span>
+    
+                            </li>
+                           </ol>
+                    
+                       </div>
+                       
+
+                       <div id="iterate1" style="margin-left: 0px; width: auto;display: none;font-size:18px">
+                      
+                       <ol class="jsavautoresize jsavcenter jsavindexed jsavarray jsavhorizontalarray" data-visible="true" data-autoresize="true" data-center="true" data-layout="array" data-indexed="true" data-template="<span class=&quot;jsavvalue&quot;><span class=&quot;jsavvaluelabel&quot;>{{value}}</span></span><span class=&quot;jsavindexlabel&quot;>{{index}}</span>" style="height: 110px; width: 400px;">
+                        
+                        <div id="heading2" style="margin-left: -20px;color:#e0e0e0"><b>X<sub>1</sub> </b></div>
+                        <br>
+                        <li class="node jsavindex" id="xnode1">
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="n1"></span></span><span class="jsavindexlabel">0</span>
+
+                        </li>
+                        <li class="node jsavindex" id="xnode2">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="n2"></span></span><span class="jsavindexlabel">1</span>
+
+                        </li>
+
+                        <li class="node jsavindex" id="xnode3">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="n3"></span></span><span class="jsavindexlabel">2</span>
+
+                        </li>
+
+                        <li class="node jsavindex" id="xnode4">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="n4"></span></span><span class="jsavindexlabel">3</span>
+
+                        </li>
+                        <li class="node jsavindex" id="xnode5">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="n5"></span></span><span class="jsavindexlabel">4</span>
+
+                        </li>
+                       </ol>
+                      
+                       <p id="x1"></p>
+                       <p id="h1"></p>
+                       </div>
+
+
+                        <br>
+                    
+
+                </div>
+                    
+                </div>
+                <div style="position:absolute;bottom: 185px; right: 40px; "><button id=submittotable class="button" onclick="tosubmitadd()">ITERATE</button></div>
+                <div style="position:absolute;bottom: 115px; right: 40px; "><button  id=compareattr class="button" onclick="compare()" disabled style="text-align: center;">COMPARE</button></div>
+               
+             <div id =retb style="position:absolute;bottom: 50px; right: 40px; "><button  class="button"
+                onclick="window.location.reload()">RESET</button></div>
+        </div>
+
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+        
+        
+        <script>
+
+      let countSubmit=0;
+ 
+    // Retrieve the serialized table data from localStorage
+        var serializedData = localStorage.getItem('objectToPass'); 
+        var tableData = JSON.parse(serializedData);
+        var table = document.getElementById('dataPointsTable');
+
+
+
+   // Reconstruct the table by iterating through the tableData array
+  for (var i = 0; i < tableData.length; i++) {
+  var rowData = tableData[i];
+  var row = table.insertRow();
+  row.classList.add("tocheck")
+  console.log(rowData);
+
+
+  // Iterate through each property of the row data object
+
+  row[0]=i
+
+  for (var columnName in rowData) {
+    var cell = row.insertCell();
+    cell.textContent = rowData[columnName];
+  }
+}
+var rl = document.getElementsByClassName('tocheck');
+
+//most specific
+
+alert1('success','Initialization','The most specific hypothesis is: {ϕ, ϕ, ϕ, ϕ}.<br> To perform Generalization click on <b style="color: #FF6600">ITERATE</b> button.'); 
+
+
+
+    
+var x; 
+
+
+
+let countques=0;
+//Iterate button
+function tosubmitadd(){
+    document.getElementById('obser1').style.display='none';
+    document.getElementById('obser2').style.display='none';
+
+    if(countSubmit!=0)
+    {
+        //remove color and arrow
+    rl[countSubmit-1].style.border='none';
+    document.getElementById('hnode5').style.backgroundColor='white';
+    document.getElementById('xnode5').style.backgroundColor='white';
+    document.getElementById('hnode5').classList.remove("jsavarrow");
+    document.getElementById('xnode5').classList.remove("jsavarrow");
+    }
+    countSubmit=countSubmit+1;
+    console.log(countSubmit);
+    add(countSubmit);
+    countques=0
+}
+
+var hypothesis =[];
+var hypo=[]; let countyes=0;
+
+function add(j)
+{
+
+    document.getElementById('iterate0').style.display="block";
+
+    // border on current row
+    rl[j-1].style.border ="2px solid #FF6600";
+   
+    //buttons disabled-enabled
+    document.getElementById('compareattr').disabled=false;
+    document.getElementById('submittotable').disabled=true;
+
+    //displaying selected example values in compare div
+    for(i=1;i<6;i++)
+       {
+        hypothesis[i-1]= rl[j-1].cells[i].innerHTML;
+        id='n'+i;
+        document.getElementById(id).innerHTML=hypothesis[i-1]; //row data 
+       }
+
+    
+
+       if(rl[j-1].cells[6].innerHTML=='Yes')
+    {
+      countyes=countyes+1;
+
+       //for 1st row
+       if(countyes==1)
+       {
+        document.getElementById('heading').innerHTML='h<sub>'+(j-1)+'</sub>';
+        alert1('info','1ˢᵗ positive example','Now, click on <b style="color: #FF6600">COMPARE</b> button.'); 
+        console.log("J:"+j)
+
+        for(i=1;i<6;i++)
+       {
+        hypo[i-1]= rl[j-1].cells[i].innerHTML;
+       } 
+       }
+
+       //other hypothesis
+       else{
+        alert1('info','Positive example','Now, click on <b style="color: #FF6600">COMPARE</b> button. The current hypothesis updated by comparing it with the current instance.'); 
+   
+       document.getElementById('heading').innerHTML='h<sub>'+(j-1)+'</sub>';
+       document.getElementById('heading2').innerHTML='X<sub>'+(j)+'</sub>';
+
+       for(i=1;i<6;i++)
+       {
+        id='hh'+i;
+        document.getElementById(id).innerHTML=hypo[i-1] ; //pre -hypo- data 
+        
+       }
+        
+     
+
+       }
+  
+       document.getElementById('iterate1').style.display="block";
+ 
+       return;
+}
+
+
+// for negative instances
+else{
+
+       document.getElementById('heading').innerHTML='h<sub>'+(j-1)+'</sub>';
+       document.getElementById('heading2').innerHTML='X<sub>'+(j)+'</sub>';
+
+    if(j==1)
+       {
+
+        alert1('info','Negative example!','No change in hypothesis(h) again click on <b style="color: #FF6600">ITERATE</b> button.'); 
+
+
+       document.getElementById('heading').innerHTML='h<sub>'+(j-1)+'</sub>';
+
+        for(i=1;i<6;i++)
+       {
+        hypo[i-1]='ϕ';
+       } 
+       document.getElementById('iterate1').style.display="block";
+       document.getElementById('label').innerHTML="h<sub>1</sub>";
+       document.getElementById('obser1').style.display="block";
+       document.getElementById('obser2').style.display="block";
+       document.getElementById('obser2').innerHTML="Negative examples are neglected, leading to no alteration in the hypothesis.";
+       document.getElementById('compareattr').disabled=true;
+       document.getElementById('submittotable').disabled=false;
+       return;
+
+       }
+
+       else{
+        alert1('info','Negative instance','Click on <b style="color: #FF6600">COMPARE</b> button.');
+       
+       document.getElementById('heading').innerHTML='h'+(j-1) ;
+       for(i=1;i<6;i++)
+       {
+        id='hh'+i;
+        document.getElementById(id).innerHTML=hypo[i-1] ; //row data  
+       }
+       document.getElementById('iterate1').style.display="block";
+       }
+        
+       return;
+    }
+    
+   
+}
+
+
+function delay(milliseconds){
+    return new Promise(resolve => {
+        setTimeout(resolve, milliseconds);
+    });
+}
+
+
+
+
+let cc=0;
+let yes=0;
+
+async function compare()
+{
+   a= countSubmit;
+   console.log(a)
+
+   example=rl[a-1].cells[6].innerHTML;
+   console.log(example)
+
+   if(example=='Yes')
+   {
+   yes=yes+1;
+   //1st instance
+     if(a==1 ||yes==1)
+     {
+  if(a!=8)
+  {
+    alert1('info','1ˢᵗ instance','Observe the result in the hypothesis space, and then click on the <b style="color: #FF6600">ITERATE</b> button again.');
+     
+    document.getElementById('compareattr').disabled=true;
+    document.getElementById('submittotable').disabled=false; 
+  }
+  else{
+    alert1('info','1ˢᵗ instance','Observe the result in HYPOTHESIS SPACE and then click on <b style="color: #FF6600">ANALYZE</b> tab.'); 
+    analyse();
+  }
+ 
+    document.getElementById('obser1').style.display="block";
+    document.getElementById('obser2').style.display="block";
+    document.getElementById('label').innerHTML='h<sub>'+(a)+'</sub>';
+   
+    for(i=0;i<5;i++)
+            {
+                ids='oh'+(i+1)
+                document.getElementById(ids).innerHTML=hypothesis[i];
+            }
+   
+    document.getElementById('obser2').innerHTML='1<sup>st</sup> positive example, the hypothesis \'h\' is updated by generalizing it to include the attribute value of the instance.'
+
+    if(a==8)
+    {
+        for(i=0;i<5;i++)
+    {
+        finalarray[i]=hypothesis[i];
+    }
+    console.log(finalarray)
+    finals();
+
+    }
+   
+
+    return;
+     }
+
+
+    //for other yes instance
+     if(a!=1)
+    {
+        
+    id1='hnode'+(cc+1)
+    id2='xnode'+(cc+1)
+
+    let v1 = document.getElementById(id1);
+    v1.classList.add("jsavarrow");
+    let v2 = document.getElementById(id2);
+    v2.classList.add("jsavarrow");
+
+    //animation
+    let idani = null;
+    let pos1 = 0;let pos2 = 0;
+    clearInterval(idani);
+    idani = setInterval(frame, 5);
+    
+    function frame() {
+    if (pos1 == 38 && pos2==-38) {
+      clearInterval(idani);
+    } else {
+      pos1++;
+      pos2--; 
+      v1.style.top = pos1 + "px"; 
+      v2.style.top = pos2 + "px"; 
+    }
+  }
+
+ 
+    if(cc!=0)
+    {
+    //removing previous arrow
+    id11='hnode'+(cc)
+    id21='xnode'+(cc)
+    let v11 = document.getElementById(id11);
+    v11.classList.remove("jsavarrow");
+    let v21 = document.getElementById(id21);
+    v21.classList.remove("jsavarrow");
+
+    //removing highlight from previous cell
+    document.getElementById(id11).style.backgroundColor='white';
+    document.getElementById(id21).style.backgroundColor='white';
+
+    }
+
+    if(cc==0)
+    {
+        for(i=0;i<5;i++)
+            {
+                ids='oh'+(i+1)
+                document.getElementById(ids).innerHTML="";
+            }
+    }
+    document.getElementById('label').innerHTML='h<sub>'+(a)+'</sub>';
+
+
+    //start comparing every attribute
+    if(cc<5)
+    {
+       
+        console.log(cc)
+        console.log(hypothesis[cc])
+        console.log(hypo[cc])
+        if(hypothesis[cc]==hypo[cc])
+        {
+            
+            document.getElementById('obser1').style.display="block";
+            document.getElementById('obser2').style.display="block";
+            
+            
+            document.getElementById('obser2').innerHTML='As both values matched, the attribute value remained unchanged.'
+    
+           await delay(700);
+             if(cc!=4)
+          {
+            alert2('success','Match!!','Hypothesis value remains same. <br>Click on the <b style="color: #FF6600">COMPARE</b> button to compare next attribute.',v1,v2);
+   
+          }
+          else if(cc==4 && a==8)
+           {
+            alert2('success','Match!!!','Hypothesis value remains same. <br>Now, click on <b style="color: #FF6600">ANALYZE</b> tab.',v1,v2);
+           }
+          else{
+           alert2('success','Match!!!','Hypothesis value remains same. <br>Click on the <b style="color: #FF6600">ITERATE</b> button to progress to the next instance.',v1,v2);
+           }
+
+           document.getElementById(id1).style.backgroundColor='lightgreen';
+           document.getElementById(id2).style.backgroundColor='lightgreen';
+
+            //array in hypothesis space
+            idss='oh'+(cc+1)
+            document.getElementById(idss).innerHTML=hypothesis[cc];
+            if(a==8)
+    {
+        for(i=0;i<5;i++)
+    {
+        finalarray[i]=hypothesis[i];
+    }
+    console.log(finalarray)
+    finals(finalarray);
+    }
+         if(cc==4)
+         {
+            for(i=1;i<6;i++)
+       {
+     
+         if(rl[a-1].cells[i].innerHTML==hypo[i-1])
+         {
+            hypo[i-1]=  rl[a-1].cells[i].innerHTML;
+         }
+
+        else{
+            hypo[i-1]='?';       
+         }
+console.log(hypo)
+       }
+         }  
+    }
+        
+
+
+        else{
+            document.getElementById('obser1').style.display="block";
+            document.getElementById('obser2').style.display="block";
+            document.getElementById('obser2').innerHTML='Since both values did not match, the attribute value was replaced with a \'?\'.'
+        
+           await delay(700);
+          
+           console.log(cc)
+
+           if(cc!=4){
+            if(hypo[cc]=='?')
+            {
+                alert2('error','No Match!','Between these two more general is \'?\' so will put \'?\'.<br>Now, again click on <b style="color: #FF6600">COMPARE</b> button to compare next attribute.',v1,v2);
+            }
+            else{
+                alert2('error','No Match!','Hypothesis value is updated with a <b>?</b> <br>Now, again click on <b style="color: #FF6600">COMPARE</b> button to compare next attribute.',v1,v2);
+            }
+          
+           }
+           else if(cc==4 && a==8)
+           {
+            if(hypo[cc]=='?')
+            {
+                alert2('error','No Match!','Between these two more general is \'?\' so will put \'?\'.<br>Now, click on <b style="color: #FF6600">ANALYZE</b> tab.',v1,v2);
+            }
+            else
+            alert2('error','No Match!','Hypothesis value is updated with a <b>?</b> <br>Now, click on <b style="color: #FF6600">ANALYZE</b> tab.',v1,v2);
+           }
+           else{
+            if(hypo[cc]=='?')
+            {
+                alert2('error','No Match!','Between these two more general is \'?\' so will put \'?\'.<br>Now, click on <b style="color: #FF6600">ITERATE</b> button to progress to the next instance.', v1 , v2);
+            }
+            else{
+                alert2('error','No Match!','Hypothesis value is updated with a <b>?</b> <br>Now, click on <b style="color: #FF6600">ITERATE</b> button to progress to the next instance.', v1 , v2);
+            }
+      
+           }
+           countques++;
+            document.getElementById(id1).style.backgroundColor='red';
+            document.getElementById(id2).style.backgroundColor='red';
+
+           //array in hypothesis space
+            idss='oh'+(cc+1)
+            document.getElementById(idss).innerHTML='?'; 
+    
+            if(a==8)
+    {
+        for(i=0;i<5;i++)
+    {
+        finalarray[i]=hypothesis[i];
+    }
+    console.log(finalarray)
+    finals(finalarray);
+    }
+    if(cc==4)
+    {
+        for(i=1;i<6;i++)
+       {
+     
+         if(rl[a-1].cells[i].innerHTML==hypo[i-1])
+         {
+            hypo[i-1]=  rl[a-1].cells[i].innerHTML;
+         }
+
+        else{
+            hypo[i-1]='?';       
+         }
+
+       }
+       console.log(hypo)
+    }
+  
+         }
+    
+    }
+  
+    cc=cc+1;
+ 
+    if(cc==5 && a!=8)
+    { 
+    document.getElementById('compareattr').disabled=true;
+    document.getElementById('submittotable').disabled=false;
+    cc=0;
+    return;
+    }
+    if(a==8 && cc==5){
+    analyse();
+    }
+     }
+
+    return;
+   }
+
+
+
+
+   if(example=='No')
+   {
+    if(a!=8)
+    {
+        alert1('info','Negative example!','No change in hypothesis(h).<br> Again click on <b style="color: #FF6600">ITERATE</b> button.');
+        document.getElementById('compareattr').disabled=true;
+       document.getElementById('submittotable').disabled=false;
+    }
+   
+   if(a==8)
+   {
+    alert1('info','Negative example!','No change in hypothesis(h).<br> Now, click on <b style="color: #FF6600">ANALYZE</b> tab.');
+    analyse();   
+    finals(hypo);
+   }
+   
+       document.getElementById('iterate1').style.display="block";
+       document.getElementById('label').innerHTML='h<sub>'+(a)+'</sub>';
+       document.getElementById('obser1').style.display="block";
+       document.getElementById('obser2').style.display="block";
+       document.getElementById('obser2').innerHTML="Negative examples are neglected, resulting in no alteration to the hypothesis.";
+       
+       return;
+
+   }
+
+
+}
+var finalarray=[];
+function analyse()
+{
+    document.getElementById('compareattr').disabled=true;
+    document.getElementById('submittotable').disabled=true;
+    document.getElementById('tab-3').style.cursor="pointer";
+    document.body.getElementsByClassName("tab-create")[2].style.cursor = "pointer";
+    g=document.getElementById("todecide")
+    g.href="analyse2.html"
+
+}
+
+
+function finals(finalarray)
+{
+    console.log(finalarray)
+    var serializedData2 = JSON.stringify(finalarray); // Convert data to a string format
+    localStorage.setItem('objectToPass2', serializedData2); 
+}
+
+ function frames(v1,v2){
+
+    //animation back
+    let idani = null;
+              let pos1 = 38;let pos2 = -38;
+              clearInterval(idani);
+              idani = setInterval(frame, 5);
+              function frame() {
+               if (pos1 == 0 && pos2==0) {
+              clearInterval(idani);
+             } else {
+                pos1--;
+                pos2++; 
+                v1.style.top = pos1 + "px"; 
+                v2.style.top = pos2 + "px"; 
+                   }
+               }
+               
+
+}
+       
+       
+function alert2(icon,title,text,v1,v2)
+{
+
+ 
+    Swal.fire({
+         icon: icon,
+         title: title,
+         html: text,
+         allowOutsideClick: false,
+         target: '#box',
+         customClass: {                      // <------ customClass is an object!
+           container: 'position-absolute',
+           popup:"swal2-popup"
+         },preConfirm: () => {
+          frames(v1,v2);
+
+
+    if(countques==5)
+    {
+        alert1('success','General Condition','Since we have reached a point where all the attributes in our hypothesis have the general condition, all other examples would result in the same hypothesizes. <br>Now, click on the <b style="color: #FF6600">ANALYZE</b> tab.');
+        analyse();
+        for(i=0;i<6;i++)
+    {
+        finalarray[i]='?';
+    }
+    finals(finalarray);
+     }
+        }      
+       });
+}       
+  
+
+
+function alert1(icon,title,text)
+{
+    Swal.fire({
+         icon: icon,
+         title: title,
+         html: text,
+         allowOutsideClick: false,
+         target: '#box',
+         customClass: {                      // <------ customClass is an object!
+           container: 'position-absolute',
+           popup:"swal2-popup"
+         },     
+       });
+}
+
+       </script>
+        <script src="js/script.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+        <script>
+        </script>
+        <script>
+//localStorage.removeItem('objectToPass')
+
+
+
+const pageAccessedByReload = (
+  (window.performance.navigation && window.performance.navigation.type === 1) ||
+    window.performance
+      .getEntriesByType('navigation')
+      .map((nav) => nav.type)
+      .includes('reload')
+);
+if(pageAccessedByReload==true){
+    window.location.href="compute-2.html"
+}
+
+
+
+
+
+        </script>
+
+    </div>
+
+</body>
+
+</html>
