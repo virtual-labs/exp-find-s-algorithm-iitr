@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+    <div class="container" id="box">
+   
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                    <ol type="1" style="font-size: 20px;text-align: justify;">
+                        <li>In the <b>ATTRIBUTES</b> section, select values for each attribute using the dropdown menu. Click <b>ADD</b> to incorporate these values into the table.</li>
+                        <li>Repeat the above step until you've completed this process for 8 rows.</li>
+                        <li>Click on <b>NEXT</b> button to navigate to the <b>COMPUTE</b> page.</li>
+                        <li>Click the <b>ITERATE</b> button to identify positive and negative examples within the DATASET.</li>
+                        <li>Then, click the <b>COMPARE</b> button to uncover a more generalized hypothesis.</li>
+                        <li>Repeat steps 4 and 5 for every instance (example) in the DATASET.</li>
+                        <li>Now click on <b>ANALYZE</b> tab.</li>
+                    </ol>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"
+                    style="display: flex; border-right: 2px solid black;background-color: #e0e0e0; color: black;border-top-left-radius: 10px;cursor:not-allowed;">
+                    <div class="tab-create" style="background-color: #e0e0e0;border-top-left-radius: 10px;cursor:not-allowed;">
+                        <a class="tab-text" style="color: black;font-weight: bold;cursor:not-allowed;"> CREATE</a>
+                    </div>
+                    <img src="images/create1.png" style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid black; color: white;cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+
+                        COMPUTE
+                    </div>
+                    <img src="images/calculator.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" id="calImg" alt="">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid black; color: white; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        ANALYZE
+                    </div>
+                    <img src="images/analyse.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px" href="#">INSTRUCTIONS</a>
+        </header>
+
+        <div class="sec-con-container">
+            <div class="sec-con-column">
+                <!-- controls -->
+                <div class="ex1-left-side-container">
+                    <div class="sub-div-control" id="training-control" style="height:500px">
+                        <header id="trainToTest" class="header-box">ATTRIBUTES</header>
+                        <div class="control-panel">
+                            <div class="Data-set-value-input-container">
+                                <span class="control-input-heading"><b>CITATIONS</b> :</span>
+                                <select class="input-control" id="citationsa" >
+                                    <option value='NULL'>NULL</option>
+                                    <option value="Some">SOME</option>
+                                    <option value="Many">MANY</option>
+                                </select>
+                            </div>
+                            <div class="Data-set-value-input-container">
+                                <span class="control-input-heading"><b>SIZE</b> :</span>
+                                <select class="input-control" id="sizea" >
+                                    <option value='NULL'>NULL</option>
+                                    <option value="Small">SMALL</option>
+                                    <option value="Medium">MEDIUM</option>
+                                    <option value="Big">BIG</option>
+                                </select>
+                            </div>
+                            <div class="Data-set-value-input-container">
+                                <span class="control-input-heading"><b>IN LIBRARY</b> :</span>
+                                <select class="input-control" id="librarya">
+                                    <option value='NULL'>NULL</option>
+                                    <option value="Always">ALWAYS</option>
+                                    <option value="No">NO</option>
+                                   
+                                </select>
+                            </div>
+                            <div id=target class="Data-set-value-input-container">
+                                <span class="control-input-heading"><b>PRICE</b> :</span>
+                                <select class="input-control" id="pricea">
+                                    <option value='NULL'>NULL</option>
+                                    <option value='Affordable'>AFFORDABLE</option>
+                                    <option value="Expensive">EXPENSIVE</option>
+                                </select>
+                            </div>
+                            <div class="Data-set-value-input-container">
+                                <span class="control-input-heading"><b>EDITIONS</b> :</span>
+                                <select class="input-control" id="editionsa">
+                                    <option value='NULL'>NULL</option>
+                                    <option value="One">ONE</option>
+                                    <option value="Many">MANY</option>
+                                    <option value="Few">FEW</option>
+                                </select>
+                            </div>
+
+                            <div class="Data-set-value-input-container">
+                                <span class="control-input-heading"><b>BUY</b> :</span>
+                                <select class="input-control" id="buya">
+                                    <option value='NULL'>NULL</option>
+                                    <option value="Yes">YES</option>
+                                    <option value="No">NO</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- table -->
+            <div class="sec-con-table">
+                <div class="sub-div-table">
+                    <header class="header-box">DATASET (X)</header>
+                    <div id="tablesContainer" >
+                        <table id="dataSetTable">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>CITATIONS</th>
+                                    <th>SIZE</th>
+                                    <th>IN LIBRARY</th>
+                                    <th>PRICE</th>
+                                    <th>EDITIONS</th>
+                                    <th>BUY</th>
+                                    <th class="tobedeleated">DELETE</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="for11">
+                                <!-- Data point coordinates will be dynamically populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+        <div class="control-panel-button-container" style="padding-left:330px;width:60%">
+            <input class="button" type="button" id="add-button" onclick="addDataToTable()"
+                value="ADD" style="margin-left: 3px;" />
+            <input class="button" id='reset' type="button" title="clears the inserted data." disabled value="RESET" onclick="window.location.reload()"
+                style="margin-left: 3px;" />
+                <input class="button" type="button" value="NEXT" id="NEXT" onclick="thenextbutton()" disabled = true ; style="margin-left: 3px; cursor: not-allowed;" />
+        </div>
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+
+        <script src="js/script1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            Swal.fire({
+            icon: 'info',
+            title:'Create the dataset for performing the Find-s Algo!!',
+            html: 'Choose a value for each attribute using the dropdown menu,<br> and then click the <b style="color:#FF6600">ADD</b> button.',
+            customClass: {
+                container: "position-absolute",
+                popup: "swal-popup",
+                title: "swal-title",
+                content: "swal-content",
+            },
+            target: myContainer,
+            didOpen: () => {
+             
+                const container = document.querySelector('.position-absolute');
+                const containerWidth = myContainer.offsetWidth;
+                const containerHeight = myContainer.offsetHeight;
+
+                // Change font size based on container size
+                if (containerWidth >= 1000 && containerHeight >= 672) {
+                    container.style.fontSize = '24px';
+                } else {
+                    container.style.fontSize = '16px';
+                }
+
+                // Adjust dimensions and position of the Swal container
+                container.style.position = 'absolute';
+                container.style.width = '100%';
+                container.style.height = '100%';
+                container.style.top = '0';
+                container.style.left = '0';
+                container.style.padding = '0';
+            },
+        });
+            document.querySelector('.container').style.backgroundImage = 'none';
+        </script>
+    </div>
+
+</body>
+
+</html>

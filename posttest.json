@@ -1,0 +1,52 @@
+[
+  {
+    "question": "In the Find-S algorithm, what happens if an instance contradicts the current most specific hypothesis?",
+    "answers": {
+      "a": "The instance is discarded from the training set.",
+      "b": "The instance is added to the testing set.",
+      "c": "The most specific hypothesis is updated to exclude the instance.",
+      "d": "The most specific hypothesis is updated to include the instance."
+    },
+    "correctAnswer": "d"
+  },
+  {
+    "question": "The Find-S algorithm is designed to work with:",
+    "answers": {
+      "a": "Labeled data only",
+      "b": "Unlabeled data only",
+      "c": "Labeled and unlabeled data",
+      "d": "Noisy data only"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "Find-S algorithm is a:",
+    "answers": {
+      "a": "Model-based learning algorithm",
+      "b": "Instance-based learning algorithm",
+      "c": "Rule-based learning algorithm",
+      "d": "Lazy learning algorithm"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "The Find-S algorithm terminates when:",
+    "answers": {
+      "a": "A specific number of iterations is reached",
+      "b": "The training data is exhausted",
+      "c": "The most specific hypothesis becomes empty",
+      "d": "The most general hypothesis becomes empty"
+    },
+    "correctAnswer": "c"
+  },
+  {
+    "question": "Which of the following is a limitation of the Find-S algorithm?",
+    "answers": {
+      "a": "It cannot handle noisy data",
+      "b": "It requires a large number of training instances",
+      "c": "It only works with continuous data",
+      "d": "It is not suitable for binary classification tasks"
+    },
+    "correctAnswer": "a"
+  }
+]
