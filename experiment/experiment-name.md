@@ -1,1 +1,1 @@
-## Experiment name
+## To study and perform the Find-S algorithm for hypothesis learning
