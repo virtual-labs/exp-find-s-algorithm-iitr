@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Find-S algorithm belongs to which category of machine learning algorithms?",
+    "answers": {
+      "a": "Supervised learning",
+      "b": "Unsupervised learning",
+      "c": "Reinforcement learning",
+      "d": "Semi-supervised learning"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "Find-S algorithm ignores?",
+    "answers": {
+      "a": "Positive",
+      "b": "Negative",
+      "c": "Both (a) and (b)",
+      "d": "None of the Above"
+    },
+    "correctAnswer": "b"
+  },
+  {
+    "question": "Find-S algorithm is also known as:",
+    "answers": {
+      "a": "Specific-to-General algorithm",
+      "b": "General-to-Specific algorithm",
+      "c": "Specific-to-Universal algorithm",
+      "d": "Universal-to-Specific algorithm"
+    },
+    "correctAnswer": "a"
+  },
+  {
+    "question": "Which of the following is NOT a step in the Find-S algorithm?",
+    "answers": {
+      "a": "Generalization",
+      "b": "Specialization",
+      "c": "Comparison",
+      "d": "Back-propagation"
+    },
+    "correctAnswer": "d"
+  },
+  {
+    "question": "The generalization step in the Find-S algorithm involves:",
+    "answers": {
+      "a": "Making the hypothesis more specific",
+      "b": "Making the hypothesis more general",
+      "c": "Selecting a random hypothesis",
+      "d": "Removing irrelevant features from the hypothesis"
+    },
+    "correctAnswer": "b"
+  }
+]

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/compute.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"> </script>
+</head>
+
+<body>
+    <div class="container" id="box">
+        <!-- Instructions -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">×</span>
+                    <h2>Instructions</h2>
+                </div>
+                <div class="modal-body">
+
+                    <p>
+                        <ol type="1" style="font-size: 20px;text-align: justify;">
+                            <li>Select a value for each attribute in the <b>TRAINING DATASET</b> using the dropdown and then click the <b>ADD</b> button to incorporate the values into the table.</li>
+                            <li>Repeat the above step until you've completed this process for 8 rows.</li>
+                            <li>Click on <b>NEXT</b> button to navigate to the <b>COMPUTE</b> page.</li>
+                            <li>Click the <b>ITERATE</b> button to identify positive and negative examples within the DATASET.</li>
+                            <li>Then, click the <b>COMPARE</b> button to uncover a more generalized hypothesis.</li>
+                            <li>Repeat steps 4 and 5 for every instance (example) in the DATASET.</li>
+                            <li>Now click on <b>ANALYZE</b> tab.</li>
+                        </ol>
+                        
+                        </p>
+                        <b style="color:#FF6600">NOTE:</b> Explore simulations with different dataset combinations for better understanding.
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+        <header class="header">
+            <div class="tabs">
+                <!-- tabs -->
+                <div id="tab-1"
+                    style="display: flex; border-right: 2px solid black; color: black;cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        <a class="tab-text" style="color: white;cursor:not-allowed;"> CREATE</a>
+                    </div>
+                    <img src="images/create.png" style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" alt="">
+
+                </div>
+                <div id="tab-2" style="display: flex; border-right: 2px solid black; color: white;cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        COMPUTE
+                    </div>
+                    <img src="images/calculator.png"
+                        style="margin-top: 3px; margin-right: 10px; height: 85%;cursor:not-allowed;" id="calImg" alt="">
+                </div>
+                <div id="tab-3"
+                    style="display: flex; border-right: 2px solid black;color: black;background-color:#e0e0e0;font-weight: bold; cursor:not-allowed;">
+                    <div class="tab-create" style="cursor:not-allowed;">
+                        ANALYZE
+                    </div>
+                    <img src="images/analyse1.png" style="margin-top: 3px; margin-right: 10px; height: 85%" alt="">
+
+                </div>
+            </div>
+            <a class="header-text" id="myBtn" style="padding-top: 8px" href="#">INSTRUCTIONS</a>
+        </header>
+
+        <div class="sec-con-container">
+            
+
+            <!-- table -->
+            <div class="sub-div-control" id="training-control">
+                <header id="trainToTest" class="header-box">DATASET</header>
+                <div id="tablesContainer" >
+                    
+                    <table id="dataPointsTable" >
+                        <thead >
+                            <tr >
+                                <th>S.No</th>
+                                <th>CITATIONS</th>
+                                <th>SIZE</th>
+                                <th>IN LIBRARY</th>
+                                <th>PRICE</th>
+                                <th>EDITIONS</th>
+                                <th>BUY</th>
+                            </tr>
+                        </thead>
+                        <tbody id="for11">
+                            <!-- Data point coordinates will be dynamically populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            
+
+    
+                <!-- <div class="control-panel">
+                </div> -->
+            </div>
+
+            <div class="sub-div-hypo">
+                <header class="header-box">OUTPUT</header>
+
+                <div  id="obser">
+                    
+
+                    <ol class="jsavautoresize jsavcenter jsavindexed jsavarray jsavhorizontalarray" id="obser1"data-visible="true" data-autoresize="true" data-center="true" data-layout="array" data-indexed="true" data-template="<span class=&quot;jsavvalue&quot;><span class=&quot;jsavvaluelabel&quot;>{{value}}</span></span><span class=&quot;jsavindexlabel&quot;>{{index}}</span>" style="height: 80px; width: 350px;">
+                      
+                        <b id="label" style="font-size:18px;top: 17px;left:-40px;position:absolute;color:#e0e0e0">h: </b>
+                        <li class="node jsavindex" id="onode1">
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="oh1">ϕ</span></span><span class="jsavindexlabel">0</span>
+
+                        </li>
+                        <li class="node jsavindex" id="onode2">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="oh2">ϕ</span></span><span class="jsavindexlabel">1</span>
+
+                        </li>
+
+                        <li class="node jsavindex" id="onode3">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="oh3">ϕ</span></span><span class="jsavindexlabel">2</span>
+
+                        </li>
+
+                        <li class="node jsavindex" id="onode4">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="oh4">ϕ</span></span><span class="jsavindexlabel">3</span>
+
+                        </li>
+                        <li class="node jsavindex" id="onode5">
+
+                            <span class="jsavvalue"><span class="jsavvaluelabel" id="oh5">ϕ</span></span><span class="jsavindexlabel">4</span>
+
+                        </li>
+                       </ol>
+                    
+                       
+                       <div id="obser2" style="margin-top:10px;margin-left: 30px;font-size:20px;color:#e0e0e0"></div>
+                </div>
+            
+            </diV>
+
+            <div style="position:absolute;bottom: 135px; right: 40px; "><button class="button" onclick="window.print()" style="text-align: center;">PRINT</button></div>
+        </div>
+
+        <!-- footer -->
+        <footer class="footer">
+            <span class="footer-text">© 2025 Virtual Labs, IIT Roorkee</span>
+        </footer>
+        
+        <script>
+             // Retrieve the serialized table data from localStorage
+        var serializedData = localStorage.getItem('objectToPass'); 
+        var tableData = JSON.parse(serializedData);
+        var table = document.getElementById('dataPointsTable');
+
+    // Retrieve the serialized  data from localStorage
+        var serializedData2 = localStorage.getItem('objectToPass2'); 
+        var hypoData = JSON.parse(serializedData2);
+
+   // Reconstruct the table by iterating through the tableData array
+  for (var i = 0; i < tableData.length; i++) {
+  var rowData = tableData[i];
+  var row = table.insertRow();
+  row.classList.add("tocheck")
+  console.log(rowData);
+
+
+  // Iterate through each property of the row data object
+
+  row[0]=i
+
+  for (var columnName in rowData) {
+    var cell = row.insertCell();
+    cell.textContent = rowData[columnName];
+  }
+}
+var rl = document.getElementsByClassName('tocheck');
+
+
+for(var i=0;i<5;i++)
+{
+                ids='oh'+(i+1)
+                document.getElementById(ids).innerHTML=hypoData[i];
+}
+document.getElementById('obser2').innerHTML="Maximal specific hypothesis out of all possible hypothesis.";
+
+Swal.fire({
+         icon: 'info',
+         html: 'Explore simulations with different dataset combinations for better understanding.',
+         allowOutsideClick: false,
+         target: '#box',
+         customClass: {                      // <------ customClass is an object!
+           container: 'position-absolute',
+           popup:"swal2-popup"
+         },     
+       });
+
+        </script>
+        <script src="js/script.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+        <script>const pageAccessedByReload = (
+            (window.performance.navigation && window.performance.navigation.type === 1) ||
+              window.performance
+                .getEntriesByType('navigation')
+                .map((nav) => nav.type)
+                .includes('reload')
+          );
+          if(pageAccessedByReload==true){
+              window.location.href="index.html"
+          }
+          </script>
+    </div>
+
+</body>
+
+</html>
